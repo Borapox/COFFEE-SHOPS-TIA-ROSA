@@ -1,5 +1,5 @@
 # clientes.py
-from dados import clientes, salvar_dados
+from dados import clientes, salvar_dados_clientes  # Corrigido para salvar_dados_clientes
 
 def cadastrar_cliente(nome, cpf, telefone, endereco):
     novo_id = len(clientes) + 1
@@ -9,7 +9,7 @@ def cadastrar_cliente(nome, cpf, telefone, endereco):
         "telefone": telefone,
         "endereco": endereco,
     }
-    salvar_dados(clientes)  # Salva os dados no arquivo após adicionar um novo cliente
+    salvar_dados_clientes(clientes)  # Salva os dados no arquivo após adicionar um novo cliente
     print(f"Cliente {nome} cadastrado com sucesso!")
 
 def ver_clientes():

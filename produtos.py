@@ -1,65 +1,25 @@
-# Lista de produtos disponíveis na cafeteria
-# Cada produto é representado por um dicionário com informações como nome, preço, descrição e ingredientes
+# produtos.py
+from dados import produtos, salvar_dados_produtos  # Importa os dados de produtos e a função para salvar os dados
 
-cafeteria = {
-    1: {
-        "nome": "Café",
-        "preco": 5.00,
-        "descricao": "Café quente e fresco",
-        "ingredientes": ["Café", "Água"],
-    },
-    2: {
-        "nome": "Café com Leite",
-        "preco": 6.00,
-        "descricao": "Café quente com leite",
-        "ingredientes": ["Café", "Leite", "Água"],
-    },
-    3: {
-        "nome": "Cappuccino",
-        "preco": 7.00,
-        "descricao": "Café com leite e chocolate",
-        "ingredientes": ["Café", "Leite", "Chocolate", "Água"],
-    },
-    4: {
-        "nome": "Chá",
-        "preco": 4.00,
-        "descricao": "Chá quente e fresco",
-        "ingredientes": ["Chá", "Água"],
-    },
-    5: {
-        "nome": "Suco de Laranja",
-        "preco": 5.50,
-        "descricao": "Suco natural de laranja",
-        "ingredientes": ["Laranja"],
-    },
-    6: {
-        "nome": "Pão de Queijo",
-        "preco": 3.50,
-        "descricao": "Pão de queijo quentinho",
-        "ingredientes": ["Polvilho", "Queijo", "Ovos", "Leite", "Óleo"],
-    },
-    7: {
-        "nome": "Bolo de Cenoura",
-        "preco": 6.00,
-        "descricao": "Bolo de cenoura com cobertura de chocolate",
-        "ingredientes": ["Cenoura", "Ovos", "Farinha", "Açúcar", "Chocolate"],
-    },
-    8: {
-        "nome": "Misto Quente",
-        "preco": 7.50,
-        "descricao": "Pão com queijo e presunto na chapa",
-        "ingredientes": ["Pão", "Queijo", "Presunto", "Manteiga"],
-    },
-    9: {
-        "nome": "Chocolate Quente",
-        "preco": 6.50,
-        "descricao": "Chocolate quente cremoso",
-        "ingredientes": ["Leite", "Chocolate", "Açúcar"],
-    },
-    10: {
-        "nome": "Água Mineral",
-        "preco": 3.00,
-        "descricao": "Garrafa de água sem gás",
-        "ingredientes": ["Água mineral"],
-    },
-}
+# Função para cadastrar um novo produto
+def cadastrar_produto(nome, preco):
+    novo_id = len(produtos) + 1  # Atribui um ID único baseado na quantidade atual de produtos
+    produtos[novo_id] = {
+        "nome": nome,  # Nome do produto
+        "preco": preco  # Preço do produto
+    }
+    salvar_dados_produtos(produtos)  # Salva os dados atualizados no arquivo JSON
+    print(f"Produto {nome} cadastrado com sucesso!")  # Exibe uma mensagem de sucesso
+
+# Função para visualizar os produtos cadastrados
+def ver_produtos():
+    print("Lista de produtos cadastrados:")
+    if not produtos:  # Verifica se o dicionário de produtos está vazio
+        print("Não há produtos cadastrados.")
+    else:
+        # Itera sobre os produtos e imprime suas informações
+        for id_produto, dados_produto in produtos.items():
+            print(f"ID: {id_produto}")
+            print(f"Nome: {dados_produto['nome']}")
+            print(f"Preço: R${dados_produto['preco']:.2f}")
+            print("-" * 20)

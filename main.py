@@ -1,5 +1,10 @@
+import produtos  # Importa as funções de produtos
 from dados import clientes  # Importa o dicionário de clientes de dados.py
 from clientes import cadastrar_cliente  # Importa a função de cadastrar cliente de clientes.py
+from produtos import cadastrar_produto, ver_produtos  # Importa as funções de produtos
+from dados import salvar_dados_clientes  # Importa a função de salvar dados de clientes
+from dados import salvar_dados_produtos  # Importa a função de salvar dados de produtos
+from dados import pedidos  # Importa o dicionário de pedidos de dados.py
 
 
 def menu():
@@ -30,7 +35,7 @@ def menu():
             ver_clientes()
         elif opcao == "5":
             # Adiciona um novo produto ao cardápio.
-            cadastrar_produto()
+            cadastrar_novo_produto()  # Corrigido para chamar a função correta
         elif opcao == "6":
             # Mostra os produtos disponíveis.
             ver_produtos()
@@ -41,6 +46,18 @@ def menu():
         else:
             # Se a opção não existir, avisa o usuário.
             print("Opção inválida. Tente novamente.")
+
+def cadastrar_novo_produto():
+    # Coleta as informações necessárias para o produto
+    nome = input("Nome do produto: ").strip()
+    preco = float(input("Preço do produto: R$").strip())
+    
+    # Chama a função para cadastrar o produto
+    cadastrar_produto(nome, preco)
+    
+    print(f"Produto {nome} cadastrado com sucesso!")
+    input("Pressione Enter para voltar ao menu principal...")
+    print()
 
 def fazer_pedido():
     print("Fazendo um pedido...")
@@ -76,12 +93,16 @@ def ver_clientes():
             print(f"Endereço: {dados_cliente['endereco']}")
             print("-" * 20)
 
-
-def cadastrar_produto():
-    print("Cadastrando produto...")
-
 def ver_produtos():
-    print("Ver produtos...")
+    print("Lista de produtos cadastrados:")
+    if not produtos:  # Verifica se o dicionário de produtos está vazio
+        print("Não há produtos cadastrados.")
+    else:
+        for id_produto, dados_produto in produtos.items():
+            print(f"ID: {id_produto}")
+            print(f"Nome: {dados_produto['nome']}")
+            print(f"Preço: R${dados_produto['preco']:.2f}")
+            print("-" * 20)
 
 if __name__ == "__main__":
     menu()
