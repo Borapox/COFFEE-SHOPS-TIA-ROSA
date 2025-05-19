@@ -1,11 +1,8 @@
-import produtos  # Importa as funções de produtos
-from dados import clientes  # Importa o dicionário de clientes de dados.py
-from clientes import cadastrar_cliente  # Importa a função de cadastrar cliente de clientes.py
-from produtos import cadastrar_produto, ver_produtos  # Importa as funções de produtos
-from dados import salvar_dados_clientes  # Importa a função de salvar dados de clientes
-from dados import salvar_dados_produtos  # Importa a função de salvar dados de produtos
-from dados import pedidos  # Importa o dicionário de pedidos de dados.py
+from dados import clientes, produtos, pedidos  # Importa os dicionários de dados
+from dados import salvar_dados_clientes, salvar_dados_produtos, salvar_dados_pedidos  # Importa funções de salvar
 
+from clientes import cadastrar_cliente  # Importa a função de cadastrar cliente
+from produtos import cadastrar_produto, ver_produtos  # Importa as funções de produtos
 
 def menu():
     # Mostra o menu principal e espera o usuário escolher uma opção.
@@ -22,7 +19,7 @@ def menu():
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            # Abre a tela pra fazer um novo pedido.
+            # Abre a tela para fazer um novo pedido.
             fazer_pedido()
         elif opcao == "2":
             # Mostra todos os pedidos feitos até agora.
@@ -35,7 +32,7 @@ def menu():
             ver_clientes()
         elif opcao == "5":
             # Adiciona um novo produto ao cardápio.
-            cadastrar_novo_produto()  # Corrigido para chamar a função correta
+            cadastrar_novo_produto()
         elif opcao == "6":
             # Mostra os produtos disponíveis.
             ver_produtos()
@@ -61,9 +58,53 @@ def cadastrar_novo_produto():
 
 def fazer_pedido():
     print("Fazendo um pedido...")
+    # Pede os dados do cliente para fazer o pedido
+    id_cliente = int(input("Informe o ID do cliente: "))
+    if id_cliente not in clientes:
+        print("Cliente não encontrado.")
+        return
+    
+    print("Selecione os produtos para o pedido:")
+    ver_produtos()
+    id_produto = int(input("Informe o ID do produto: "))
+    if id_produto not in produtos:
+        print("Produto não encontrado.")
+        return
+
+    quantidade = int(input("Informe a quantidade: "))
+
+    # Cria o pedido
+    pedido = {
+        "id_cliente": id_cliente,
+        "id_produto": id_produto,
+        "quantidade": quantidade,
+        "total": produtos[id_produto]["preco"] * quantidade
+    }
+
+    # Gera um ID único para o pedido
+    novo_id_pedido = len(pedidos) + 1
+    pedidos[novo_id_pedido] = pedido
+
+    # Salva os dados de pedidos
+    salvar_dados_pedidos(pedidos)
+
+    print(f"Pedido realizado com sucesso! ID do pedido: {novo_id_pedido}")
+    input("Pressione Enter para voltar ao menu principal...")
 
 def ver_pedidos():
-    print("Ver pedidos...")
+    print("Lista de pedidos realizados:")
+    if not pedidos:  # Verifica se o dicionário de pedidos está vazio
+        print("Não há pedidos realizados.")
+    else:
+        for id_pedido, pedido in pedidos.items():
+            cliente = clientes[pedido["id_cliente"]]
+            produto = produtos[pedido["id_produto"]]
+            print(f"ID: {id_pedido}")
+            print(f"Cliente: {cliente['nome']}")
+            print(f"Produto: {produto['nome']}")
+            print(f"Quantidade: {pedido['quantidade']}")
+            print(f"Total: R${pedido['total']:.2f}")
+            print("-" * 20)
 
 def cadastrar_novo_cliente():
     # Pede os dados do cliente para cadastro
@@ -73,16 +114,16 @@ def cadastrar_novo_cliente():
     endereco = input("Endereço: ").strip()
 
     # Chama a função de cadastro no arquivo clientes.py
-    cadastrar_cliente(nome, cpf, telefone, endereco)  # Passa os dados coletados para o cadastro
+    cadastrar_cliente(nome, cpf, telefone, endereco)
 
     # Confirmação do cadastro e retorno ao menu
     print(f"Cliente {nome} cadastrado com sucesso!")
-    input("Pressione Enter para voltar ao menu principal...")  # Aguarda o usuário pressionar Enter para continuar
-    print()  # Linha em branco para clareza
+    input("Pressione Enter para voltar ao menu principal...")
+    print()
 
 def ver_clientes():
     print("Lista de clientes cadastrados:")
-    if not clientes:  # Verifica se o dicionário de clientes está vazio
+    if not clientes:
         print("Não há clientes cadastrados.")
     else:
         for id_cliente, dados_cliente in clientes.items():
@@ -91,17 +132,6 @@ def ver_clientes():
             print(f"CPF: {dados_cliente['cpf']}")
             print(f"Telefone: {dados_cliente['telefone']}")
             print(f"Endereço: {dados_cliente['endereco']}")
-            print("-" * 20)
-
-def ver_produtos():
-    print("Lista de produtos cadastrados:")
-    if not produtos:  # Verifica se o dicionário de produtos está vazio
-        print("Não há produtos cadastrados.")
-    else:
-        for id_produto, dados_produto in produtos.items():
-            print(f"ID: {id_produto}")
-            print(f"Nome: {dados_produto['nome']}")
-            print(f"Preço: R${dados_produto['preco']:.2f}")
             print("-" * 20)
 
 if __name__ == "__main__":
