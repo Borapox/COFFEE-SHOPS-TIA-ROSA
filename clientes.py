@@ -1,18 +1,15 @@
-#Lista de clientes cadastrados na cafeteria
-# Cada cliente é representado por um dicionário com informações como nome, CPF, telefone e endereço
-
-from dados import clientes
-
+# clientes.py
+from dados import clientes, salvar_dados
 
 def cadastrar_cliente(nome, cpf, telefone, endereco):
-
     novo_id = len(clientes) + 1
-    clientes[novo_id]= {
+    clientes[novo_id] = {
         "nome": nome,
         "cpf": cpf,
         "telefone": telefone,
         "endereco": endereco,
     }
+    salvar_dados(clientes)  # Salva os dados no arquivo após adicionar um novo cliente
     print(f"Cliente {nome} cadastrado com sucesso!")
 
 def ver_clientes():
@@ -24,4 +21,3 @@ def ver_clientes():
         print(f"Telefone: {dados_cliente['telefone']}")
         print(f"Endereço: {dados_cliente['endereco']}")
         print("-" * 20)
-
