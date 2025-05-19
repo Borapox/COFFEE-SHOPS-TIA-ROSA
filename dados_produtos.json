@@ -1,6 +1,42 @@
 {
     "1": {
-        "nome": "batata",
+        "nome": "Café Expresso",
+        "preco": 4.0
+    },
+    "2": {
+        "nome": "Café com Leite",
+        "preco": 5.5
+    },
+    "3": {
+        "nome": "Cappuccino",
+        "preco": 6.0
+    },
+    "4": {
+        "nome": "Pão de Queijo",
+        "preco": 3.5
+    },
+    "5": {
+        "nome": "Torrada com Manteiga",
+        "preco": 4.0
+    },
+    "6": {
+        "nome": "Bolo de Cenoura",
         "preco": 5.0
+    },
+    "7": {
+        "nome": "Suco Natural de Laranja",
+        "preco": 6.0
+    },
+    "8": {
+        "nome": "Sanduíche Natural",
+        "preco": 7.5
+    },
+    "9": {
+        "nome": "Croissant",
+        "preco": 6.5
+    },
+    "10": {
+        "nome": "Chocolate Quente",
+        "preco": 5.5
     }
 }

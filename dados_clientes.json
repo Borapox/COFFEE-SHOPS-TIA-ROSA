@@ -1,8 +1,62 @@
 {
     "1": {
-        "nome": "charles",
-        "cpf": "34523452345",
-        "telefone": "23452345",
-        "endereco": "sdfgsdfg"
+        "nome": "Charles da Silva",
+        "cpf": "12345678901",
+        "telefone": "11987654321",
+        "endereco": "Rua das Flores, 123"
+    },
+    "2": {
+        "nome": "Ana Paula Oliveira",
+        "cpf": "23456789012",
+        "telefone": "21987654321",
+        "endereco": "Avenida Brasil, 456"
+    },
+    "3": {
+        "nome": "Marcos Vinícius",
+        "cpf": "34567890123",
+        "telefone": "31999998888",
+        "endereco": "Rua das Laranjeiras, 789"
+    },
+    "4": {
+        "nome": "Juliana Souza",
+        "cpf": "45678901234",
+        "telefone": "11912345678",
+        "endereco": "Travessa Alegre, 321"
+    },
+    "5": {
+        "nome": "Pedro Henrique",
+        "cpf": "56789012345",
+        "telefone": "21922334455",
+        "endereco": "Rua São João, 654"
+    },
+    "6": {
+        "nome": "Camila Duarte",
+        "cpf": "67890123456",
+        "telefone": "11987651234",
+        "endereco": "Rua das Palmeiras, 987"
+    },
+    "7": {
+        "nome": "Thiago Martins",
+        "cpf": "78901234567",
+        "telefone": "31988776655",
+        "endereco": "Avenida Central, 111"
+    },
+    "8": {
+        "nome": "Fernanda Lima",
+        "cpf": "89012345678",
+        "telefone": "21933445566",
+        "endereco": "Rua Bela Vista, 222"
+    },
+    "9": {
+        "nome": "Lucas Ferreira",
+        "cpf": "90123456789",
+        "telefone": "11976543210",
+        "endereco": "Praça das Árvores, 333"
+    },
+    "10": {
+        "nome": "Roberta Nunes",
+        "cpf": "01234567890",
+        "telefone": "21944332211",
+        "endereco": "Alameda dos Ipês, 444"
     }
 }
